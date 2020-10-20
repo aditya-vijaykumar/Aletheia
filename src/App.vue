@@ -1,16 +1,68 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-btn @click="authenticate">Click here</v-btn>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import web3Modal from './providers.js'
+import { DID } from 'dids'
+import CeramicClient from '@ceramicnetwork/ceramic-http-client'
+import { IDXWeb } from '@ceramicstudio/idx-web'
+import { publishIDXConfig } from '@ceramicstudio/idx-tools'
 
+import { ThreeIdConnect, EthereumAuthProvider } from '3id-connect'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+  },
+ idxcheck = async() => {
+  const ceramic = new CeramicClient()
+  const { definitions } = await publishIDXConfig(ceramic)
+  console.log('The Definitions')
+  console.log(definitions)
+
+},
+
+authenticate = async () => {
+  const threeIdConnect = new ThreeIdConnect(THREEID_CONNECT_URL)
+  const ethProvider = await web3Modal.connect()
+  const addresses = await ethProvider.request({ method: 'eth_accounts' })
+  console.log(addresses)
+  console.log('Got the address')
+
+  const authProvider = new EthereumAuthProvider(ethProvider, addresses[0])
+  await threeIdConnect.connect(authProvider)
+  console.log('3id connect func executed')
+
+  const didProvider = await threeIdConnect.getDidProvider()
+  console.log('didProvider: ' + didProvider)
+  console.dir( didProvider)
+  const did = new DID({ provider: didProvider })
+  console.dir(did)
+
+  await did.authenticate()
+  console.log('This is the did ' + did.id)
+
+  const jws = await did.createJWS({ hello: 'world' })
+  console.log(jws)
+
+  idxcheck()
+
+  await ceramic.setDIDProvider(didProvider)
+  const doc = await ceramic.createDocument('tile', { content: { test: 123 } }, { applyOnly: true, skipWait: true })
+  console.log(doc)
+
+  const idx = new IDXWeb({ ceramic, connect: threeIdConnect})
+  console.log('new idx instance created')
+
+  const ethereum = { provider: ethProvider, address: addresses[0] }
+  await idx.authenticate(ethereum)
+  if (idx.authenticated) {
+    console.log('authenticated IDX!!')
   }
+
+ },
 }
 </script>
 
