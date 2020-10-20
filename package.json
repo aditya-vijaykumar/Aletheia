@@ -1,0 +1,48 @@
+{
+  "name": "aletheia",
+  "version": "1.0.0",
+  "description": "ETHOnline 2020 build.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js --mode=development",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditya-vijaykumar/Aletheia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aditya-vijaykumar/Aletheia/issues"
+  },
+  "homepage": "https://github.com/aditya-vijaykumar/Aletheia#readme",
+  "dependencies": {
+    "3id-connect": "^0.1.0",
+    "@ceramicnetwork/ceramic-core": "^0.10.1",
+    "@ceramicnetwork/ceramic-http-client": "^0.5.14",
+    "@ceramicstudio/idx": "^0.1.0",
+    "@ceramicstudio/idx-constants": "^0.1.0",
+    "@ceramicstudio/idx-tools": "^0.2.2",
+    "@ceramicstudio/idx-web": "^0.1.0",
+    "@portis/web3": "^2.0.0-beta.57",
+    "@walletconnect/web3-provider": "^1.2.1",
+    "authereum": "0.0.4-beta.186",
+    "dag-jose": "^0.2.0",
+    "dids": "^0.6.3",
+    "identity-wallet": "^2.0.0-alpha.10",
+    "ipfs": "^0.50.2",
+    "ipfs-http-client": "^47.0.1",
+    "multiformats": "^3.0.3",
+    "npm": "^6.14.8",
+    "store": "^2.0.12",
+    "url-parse": "^1.4.7",
+    "web3modal": "^1.9.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
