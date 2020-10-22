@@ -17,7 +17,7 @@
               </div>
 
               <div class="text-center mb-5">
-                <base-button type="primary" class="my-4" @click="authenticate"
+                <base-button type="primary" class="my-4" @click="authenticate; toAccount"
                   >Get Started</base-button
                 >
               </div>
@@ -27,9 +27,21 @@
 
 <script>
 export default {
-    toMain() {
+    methods: {
+        toMain() {
         this.$emit('toggle')
-    }
+    },
+        toAccount() {
+      this.bool = false;
+    },
+    },
+    
+  data: () => {
+    return {
+      bool: true,
+      account: false,
+    };
+  },
 }
 </script>
 
