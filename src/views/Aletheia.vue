@@ -23,9 +23,8 @@
                   <span>built on Ceramic Network using IDX.</span>
                 </h1>
                 <p class="lead text-white">
-                  The design system comes with four pre-built pages to help you
-                  get started faster. You can change the text and images and
-                  you're good to go.
+                  Unlock a whole new web3 experience with decentralized
+                  identities and profiles globally available.
                 </p>
                 <div class="btn-wrapper">
                   <base-button
@@ -61,19 +60,14 @@
             <div class="row row-grid">
               <div class="col-lg-4">
                 <card class="border-0" hover shadow body-classes="py-5">
-                  <icon
-                    name="ni ni-badge"
-                    type="primary"
-                    rounded
-                    class="mb-4"
-                  >
+                  <icon name="ni ni-badge" type="primary" rounded class="mb-4">
                   </icon>
                   <h6 class="text-primary text-uppercase">IDX Protocol</h6>
                   <p class="description mt-3">
                     Argon is a great free UI package based on Bootstrap 4 that
                     includes the most important components and features.
                   </p>
-                  
+
                   <base-button tag="a" href="#" type="primary" class="mt-4">
                     Learn more
                   </base-button>
@@ -81,19 +75,14 @@
               </div>
               <div class="col-lg-4">
                 <card class="border-0" hover shadow body-classes="py-5">
-                  <icon
-                    name="ni ni-planet"
-                    type="success"
-                    rounded
-                    class="mb-4"
-                  >
+                  <icon name="ni ni-planet" type="success" rounded class="mb-4">
                   </icon>
                   <h6 class="text-success text-uppercase">Ceramic Network</h6>
                   <p class="description mt-3">
                     Argon is a great free UI package based on Bootstrap 4 that
                     includes the most important components and features.
                   </p>
-                 
+
                   <base-button tag="a" href="#" type="success" class="mt-4">
                     Learn more
                   </base-button>
@@ -101,7 +90,12 @@
               </div>
               <div class="col-lg-4">
                 <card class="border-0" hover shadow body-classes="py-5">
-                  <icon name="ni ni-single-02" type="warning" rounded class="mb-4">
+                  <icon
+                    name="ni ni-single-02"
+                    type="warning"
+                    rounded
+                    class="mb-4"
+                  >
                   </icon>
                   <h6 class="text-warning text-uppercase">
                     Decentralized Identity
@@ -110,7 +104,7 @@
                     Argon is a great free UI package based on Bootstrap 4 that
                     includes the most important components and features.
                   </p>
-                  
+
                   <base-button tag="a" href="#" type="warning" class="mt-4">
                     Learn more
                   </base-button>
@@ -121,7 +115,7 @@
         </div>
       </div>
     </section>
-   
+
     <section class="section">
       <div class="container">
         <div class="row row-grid align-items-center">
@@ -152,9 +146,7 @@
                   Profile Display System
                 </h4>
                 <p class="lead text-italic text-white">
-                  The Arctic Ocean freezes every winter and much of the sea-ice
-                  then thaws every summer, and that process will continue
-                  whatever happens.
+                  Manage your profiles through Aletheia.
                 </p>
               </blockquote>
             </div>
@@ -171,45 +163,28 @@
               ></icon>
 
               <h3>Example Profile Display</h3>
-              <p class="lead">
-                Don't let your uses guess by attaching tooltips and popoves to
-                any element. Just make sure you enable them first via
-                JavaScript.
-              </p>
-              <p>
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go.
-              </p>
-              <p>
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go.
-              </p>
-              
+              <p class="lead">Here is an example of the basic profile.</p>
+              <p>Web3 Applications can easily accesses these.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-   
+
     <section class="section section-lg">
       <div class="container">
         <div class="row justify-content-center text-center mb-lg">
           <div class="col-lg-8">
             <h2 class="display-3">The Team</h2>
             <p class="lead text-muted">
-              Meet the team behind Project Aletheia built as a project during ETHGlobal's biggest event - ETHOnline.
+              Meet the team behind Project Aletheia built as a project during
+              ETHGlobal's biggest event - ETHOnline.
             </p>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 col-lg-2 mb-5 mb-lg-0">
-            
-          </div>
-          <div class="col-md-6 col-lg-1 mb-5 mb-lg-0">
-       
-          </div>
+          <div class="col-md-6 col-lg-2 mb-5 mb-lg-0"></div>
+          <div class="col-md-6 col-lg-1 mb-5 mb-lg-0"></div>
           <div class="col-md-6 col-lg-3 mb-5 mb-lg-0">
             <div class="px-4">
               <img
@@ -235,7 +210,7 @@
                     tag="a"
                     href="#"
                     type="info"
-                    icon="fa fa-facebook"
+                    icon="fa fa-linkedin"
                     rounded
                     icon-only
                   ></base-button>
@@ -276,7 +251,7 @@
                     tag="a"
                     href="#"
                     type="success"
-                    icon="fa fa-facebook"
+                    icon="fa fa-linkedin"
                     rounded
                     icon-only
                   ></base-button>
@@ -284,7 +259,7 @@
                     tag="a"
                     href="#"
                     type="success"
-                    icon="fa fa-dribbble"
+                    icon="fa fa-instagram"
                     rounded
                     icon-only
                   ></base-button>
@@ -295,124 +270,21 @@
         </div>
       </div>
     </section>
-    
+
     <section class="section section-lg">
       <div class="container">
         <div class="row row-grid justify-content-center">
           <div class="col-lg-8 text-center">
             <h2 class="display-3">
-              Do you love this awesome
-              <span class="text-success">Design System for Bootstrap 4?</span>
+              This project is just a start!
+              <span class="text-success"
+                >We plan on building a lot more awesome stuff with Ceramic and
+                IDX.</span
+              >
             </h2>
             <p class="lead">
-              Cause if you do, it can be yours for FREE. Hit the button below to
-              navigate to Creative Tim where you can find the Design System in
-              HTML. Start a new project or give an old Bootstrap project a new
-              look!
+              Start and watch our repository on GitHub for updates!
             </p>
-            <div class="btn-wrapper">
-              <a
-                href="https://www.creative-tim.com/product/vue-argon-design-system"
-                class="btn btn-primary mb-3 mb-sm-0"
-                >Download Vue</a
-              >
-            </div>
-            <div class="text-center">
-              <h4 class="display-4 mb-5 mt-5">
-                Available on these technologies
-              </h4>
-              <div class="row justify-content-center">
-                <div class="col-lg-2 col-4">
-                  <a
-                    href="https://getbootstrap.com/"
-                    target="_blank"
-                    data-toggle="tooltip"
-                    data-original-title="Bootstrap 4 - Most popular front-end component library"
-                  >
-                    <img
-                      v-lazy="
-                        'https://s3.amazonaws.com/creativetim_bucket/tim_static_images/presentation-page/bootstrap.jpg'
-                      "
-                      class="img-fluid"
-                    />
-                  </a>
-                </div>
-                <div class="col-lg-2 col-4">
-                  <a
-                    href="https://www.sketchapp.com/"
-                    target="_blank"
-                    data-toggle="tooltip"
-                    data-original-title="[Coming Soon] Sketch - Digital design toolkit"
-                  >
-                    <img
-                      v-lazy="
-                        'https://s3.amazonaws.com/creativetim_bucket/tim_static_images/presentation-page/sketch.jpg'
-                      "
-                      class="img-fluid opacity-5"
-                    />
-                  </a>
-                </div>
-                <div class="col-lg-2 col-4">
-                  <a
-                    href="https://www.adobe.com/products/photoshop.html"
-                    data-toggle="tooltip"
-                    data-original-title="[Coming Soon] Adobe Photoshop - Software for digital images manipulation"
-                  >
-                    <img
-                      v-lazy="
-                        'https://s3.amazonaws.com/creativetim_bucket/tim_static_images/presentation-page/ps.jpg'
-                      "
-                      class="img-fluid opacity-5"
-                    />
-                  </a>
-                </div>
-                <div class="col-lg-2 col-4">
-                  <a
-                    href="https://vuejs.org/"
-                    target="_blank"
-                    data-toggle="tooltip"
-                    data-original-title="Vue.js - The progressive javascript framework"
-                  >
-                    <img
-                      v-lazy="
-                        'https://s3.amazonaws.com/creativetim_bucket/tim_static_images/presentation-page/vue.jpg'
-                      "
-                      class="img-fluid"
-                    />
-                  </a>
-                </div>
-                <div class="col-lg-2 col-4">
-                  <a
-                    href="https://angularjs.org/"
-                    target="_blank"
-                    data-toggle="tooltip"
-                    data-original-title="[Coming Soon] Angular - One framework. Mobile &amp; desktop"
-                  >
-                    <img
-                      v-lazy="
-                        'https://s3.amazonaws.com/creativetim_bucket/tim_static_images/presentation-page/angular.jpg'
-                      "
-                      class="img-fluid opacity-5"
-                    />
-                  </a>
-                </div>
-                <div class="col-lg-2 col-4">
-                  <a
-                    href="https://reactjs.org/"
-                    target="_blank"
-                    data-toggle="tooltip"
-                    data-original-title="[Coming Soon] React - A JavaScript library for building user interfaces"
-                  >
-                    <img
-                      v-lazy="
-                        'https://s3.amazonaws.com/creativetim_bucket/tim_static_images/presentation-page/react.jpg'
-                      "
-                      class="img-fluid opacity-5"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

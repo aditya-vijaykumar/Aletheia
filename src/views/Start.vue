@@ -96,37 +96,6 @@ export default {
         console.log("authenticated IDX!!");
         //redirect upon this
       }
-
-      // let doc = await idx.set("profile", {
-      //   name: "Aditya",
-      //   emoji: "",
-      //   image: "",
-      //   gender: "Male",
-      //   birthDate: "2001-05-09",
-      //   background: "",
-      //   description: "",
-      //   affiliations: [""],
-      //   homeLocation: "",
-      //   nationalities: ["IN", "CA"],
-      //   residenceCountry: "IN",
-      // });
-      // console.log("CID: " + doc);
-      // const sum = await ceramic.loadDocument(doc);
-      // console.dir(sum);
-      // console.log(sum.head);
-
-      //   const gett = async () => {
-      //     let profile = await idx.get("profile", idx.id);
-      //     console.log("My Profile : ");
-      //     console.dir(profile);
-      //   };
-      // },
-      // async verifysign() {
-      //   let publicKeys = await ceramic.context.resolver.resolve("did");
-      //   let keys = await ceramic.loadDocument(
-      //     "ceramic://" + idx.id.split(":")[2]
-      //   );
-      // },
     },
   },
   data: () => {
