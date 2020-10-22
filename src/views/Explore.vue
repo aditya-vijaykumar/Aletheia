@@ -27,6 +27,7 @@
             <template>
               <form role="form">
                 <base-input
+                  v-model="did"
                   alternative
                   class="mb-3"
                   placeholder="did"
