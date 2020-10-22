@@ -3,43 +3,44 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import web3Modal from './providers.js'
 import { DID } from 'dids'
 import CeramicClient from '@ceramicnetwork/ceramic-http-client'
 import { IDXWeb } from '@ceramicstudio/idx-web'
 import { publishIDXConfig } from '@ceramicstudio/idx-tools'
-
-import { ThreeIdConnect, EthereumAuthProvider } from '3id-connect'
+//import { definitions, schemas } from '@ceramicstudio/idx-constants'
+import ThreeIdConnect  from './node_modules/3id-connect/src/threeIdConnect'
+import EthereumAuthProvider from './node_modules/3id-connect/src/authProvider/ethereumAuthProvider'
 export default {
   name: 'App',
   components: {
     HelloWorld,
   },
- idxcheck = async() => {
-  const ceramic = new CeramicClient()
-  const { definitions } = await publishIDXConfig(ceramic)
-  console.log('The Definitions')
-  console.log(definitions)
 
-},
+
+
+// const THREEID_CONNECT_URL = 'https://3idconnect.org/index.html'
+// const DEFAULT_API_URL = 'https://ceramic.3boxlabs.com'
+// const API_URL = "http://localhost:7007"
+
+
 
 authenticate = async () => {
   const threeIdConnect = new ThreeIdConnect(THREEID_CONNECT_URL)
+const ceramic = new CeramicClient(DEFAULT_API_URL)
   const ethProvider = await web3Modal.connect()
   const addresses = await ethProvider.request({ method: 'eth_accounts' })
-  console.log(addresses)
-  console.log('Got the address')
+  console.log('Got the ethaddress')
 
   const authProvider = new EthereumAuthProvider(ethProvider, addresses[0])
   await threeIdConnect.connect(authProvider)
   console.log('3id connect func executed')
 
   const didProvider = await threeIdConnect.getDidProvider()
-  console.log('didProvider: ' + didProvider)
-  console.dir( didProvider)
+  console.log('didProvider accessed')
+  //console.dir( didProvider)
   const did = new DID({ provider: didProvider })
-  console.dir(did)
+  //console.dir(did)
 
   await did.authenticate()
   console.log('This is the did ' + did.id)
@@ -47,13 +48,18 @@ authenticate = async () => {
   const jws = await did.createJWS({ hello: 'world' })
   console.log(jws)
 
-  idxcheck()
+  const { definitions } = await publishIDXConfig(ceramic)
+  console.log('The Definitions')
+  console.log(definitions)
+  const appDefinitions = {
+    profile: definitions.basicProfile
+  }
+
 
   await ceramic.setDIDProvider(didProvider)
-  const doc = await ceramic.createDocument('tile', { content: { test: 123 } }, { applyOnly: true, skipWait: true })
-  console.log(doc)
+  console.log('Ceramic DID Provider set')
 
-  const idx = new IDXWeb({ ceramic, connect: threeIdConnect})
+  const idx = new IDXWeb({ ceramic, definitions: appDefinitions,connect: threeIdConnect})
   console.log('new idx instance created')
 
   const ethereum = { provider: ethProvider, address: addresses[0] }
@@ -62,7 +68,34 @@ authenticate = async () => {
     console.log('authenticated IDX!!')
   }
 
- },
+
+  const test = async () => {
+    let doc = await idx.set('profile', { name: 'Aditya', emoji: "",image: "", gender: "Male", birthDate: "2001-05-09", background: "", description: "", affiliations: [ ""], homeLocation: "", nationalities: ["IN", "CA"],residenceCountry:"IN"  })
+    console.log('CID: '+ doc)
+    const sum = await ceramic.loadDocument(doc)
+    console.dir(sum)
+    console.log(sum.head)
+  }
+
+  const gett = async () => {
+    let profile = await idx.get('profile', idx.id)
+    console.log('My Profile : ')
+    console.dir(profile)
+
+  }
+
+  newdoc.addEventListener('click', test())
+  getdoc.addEventListener('click', gett())
+
+
+},
+
+
+
+verifysign = async () => {
+  let publicKeys = await ceramic.context.resolver.resolve('did')
+  let keys = await ceramic.loadDocument('ceramic://' + idx.id.split(':')[2])
+},
 }
 </script>
 
