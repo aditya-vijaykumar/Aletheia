@@ -29,7 +29,7 @@
               </div>
 
               <div class="text-center mb-5">
-                <base-button type="primary" class="my-4"
+                <base-button type="primary" class="my-4" @click="authenticate"
                   >Get Started</base-button
                 >
               </div>
