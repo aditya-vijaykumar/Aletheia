@@ -17,7 +17,11 @@
           <component
             v-bind:is="component"
             @task="authenticate"
-            @part3="getem"
+            @edit="edit"
+            @update="update"
+            :profile="profile"
+            :did="id"
+            :ethadress="ethaddress"
           />
         </div>
       </div>
@@ -40,32 +44,7 @@ import { EventBus } from "../utils/event-bus.js";
 import card1 from "./components/card-one.vue";
 import card2 from "./components/card-two.vue";
 import card3 from "./components/card-three.vue";
-
-var View01 = {
-  template: ``,
-  props: ["authenticate", "getem"],
-};
-var View02 = {
-  template: `<card
-            type="secondary"
-            shadow
-            header-classes="bg-white pb-5"
-            body-classes="px-lg-5 py-lg-5"
-            class="border-0"
-            v-show="auth"
-          >
-            <template>
-              <div class="text-center mb-4"></div>
-
-              <div class="text-center mb-5">
-                <base-button type="primary" class="my-4" @click="getem"
-                  >Get Deets</base-button
-                >
-              </div>
-            </template>
-          </card>`,
-  props: ["getem"],
-};
+import card4 from "./components/card-four.vue";
 
 export default {
   name: "App",
@@ -73,6 +52,7 @@ export default {
     card1,
     card2,
     card3,
+    card4,
   },
   data: () => {
     return {
@@ -80,6 +60,9 @@ export default {
       idx: {},
       ceramic: {},
       did: {},
+      profile: {},
+      id: "",
+      ethaddress: "",
       auth: false,
     };
   },
@@ -98,6 +81,7 @@ export default {
       const ethProvider = await web3Modal.connect();
       const addresses = await ethProvider.request({ method: "eth_accounts" });
       console.log("Got the ethaddress");
+      this.ethaddress = addresses[0];
       const authProvider = new EthereumAuthProvider(ethProvider, addresses[0]);
       await threeIdConnect.connect(authProvider);
       console.log("3id connect func executed");
@@ -130,17 +114,30 @@ export default {
         console.log("authenticated IDX!!");
         //redirect upon this
         this.auth = true;
+        this.id = idx.id;
+        if (this.auth) {
+          const MyProfile = await idx.get("profile", idx.id);
+          this.profile = MyProfile;
+          console.log("My Profile");
+          console.dir(MyProfile);
+        }
         this.component = "card3";
       }
       this.idx = idx;
       this.ceramic = ceramic;
       this.did = did;
     },
-    async getem() {
+    async edit() {
       if (this.auth) {
-        const MyProfile = await this.idx.get("profile", this.idx.id);
-        console.log("My Profile");
-        console.dir(MyProfile);
+        this.component = "card4";
+      }
+    },
+    async update(event, profile2) {
+      if (this.idx.authenticated) {
+        const doc = await this.idx.set("profile", profile2);
+        const MyProfile = await idx.get("profile", this.idx.id);
+        this.profile = MyProfile;
+        this.component = "card3";
       }
     },
   },
