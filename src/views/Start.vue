@@ -10,37 +10,20 @@
       <span></span>
       <span></span>
     </div>
-    <div class="container pt-lg-md">
-      <div class="row justify-content-center">
-        <div class="col-lg-5">
-          <card
-            type="secondary"
-            shadow
-            header-classes="bg-white pb-5"
-            body-classes="px-lg-5 py-lg-5"
-            class="border-0"
-          >
-            <template>
-              <div class="text-center mb-4">
-                <h4>
-                  To get started, please give access through metamask followed
-                  by 3id.
-                </h4>
-              </div>
+    <div class="container pt-lg-md" v-if="account">
+      <Card @toggle="account = !account" />
+        </div>
+        <div v-else>
+          <Account @toggle="account = !account" />
 
-              <div class="text-center mb-5">
-                <base-button type="primary" class="my-4" @click="authenticate"
-                  >Get Started</base-button
-                >
-              </div>
-            </template>
-          </card>
         </div>
       </div>
     </div>
   </section>
 </template>
 <script>
+import Account from "./Account";
+import Card from "./card";
 import { DID } from "dids";
 import CeramicClient from "@ceramicnetwork/ceramic-http-client";
 import { IDXWeb } from "@ceramicstudio/idx-web";
@@ -53,6 +36,10 @@ import web3Modal from "../utils/provider.js";
 
 export default {
   name: "App",
+  components: {
+    Account,
+    Card,
+  },
   methods: {
     async authenticate() {
       const THREEID_CONNECT_URL = "https://3idconnect.org/index.html";
@@ -128,9 +115,15 @@ export default {
       //   );
       // },
     },
+    toAccount() {
+      this.bool = false;
+    },
   },
   data: () => {
-    return {};
+    return {
+      bool: true,
+      account: false,
+    };
   },
 };
 </script>

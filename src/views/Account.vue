@@ -103,7 +103,10 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  toMain() {
+    this.$emit("toggle");
+  },
+};
 </script>
-<style>
-</style>
+<style></style>
