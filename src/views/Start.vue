@@ -45,14 +45,12 @@ import { DID } from "dids";
 import CeramicClient from "@ceramicnetwork/ceramic-http-client";
 import { IDXWeb } from "@ceramicstudio/idx-web";
 import { publishIDXConfig } from "@ceramicstudio/idx-tools";
-//import { definitions, schemas } from '@ceramicstudio/idx-constants'
-import ThreeIdConnect from "../../node_modules/3id-connect/src/threeIdConnect";
-import EthereumAuthProvider from "../../node_modules/3id-connect/src/authProvider/ethereumAuthProvider";
+import {
+  ThreeIdConnect,
+  EthereumAuthProvider,
+} from "../../node_modules/3id-connect/src/index";
 import web3Modal from "../utils/provider.js";
-import Portis from "@portis/web3";
-import Authereum from "authereum";
-import Fortmatic from "fortmatic";
-import WalletConnectProvider from "@walletconnect/web3-provider";
+
 export default {
   name: "App",
   methods: {
