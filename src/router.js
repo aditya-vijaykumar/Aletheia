@@ -13,6 +13,7 @@ import StartFooter from "./layout/StartFooter.vue"
 import StartHeader from "./layout/StartHeader.vue"
 import Account from "./views/Account.vue"
 import Edit from "./views/Edit.vue"
+import Explore from "./views/Explore.vue"
 
 Vue.use(Router);
 
@@ -61,6 +62,15 @@ export default new Router({
       components: {
         header: StartHeader,
         default: Edit,
+        footer: StartFooter
+      }
+    },
+    {
+      path: "/explore",
+      name: "explore",
+      components: {
+        header: StartHeader,
+        default: Explore,
         footer: StartFooter
       }
     },
