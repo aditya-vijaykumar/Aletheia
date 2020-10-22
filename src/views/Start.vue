@@ -46,19 +46,15 @@ import CeramicClient from "@ceramicnetwork/ceramic-http-client";
 import { IDXWeb } from "@ceramicstudio/idx-web";
 import { publishIDXConfig } from "@ceramicstudio/idx-tools";
 //import { definitions, schemas } from '@ceramicstudio/idx-constants'
-import ThreeIdConnect from "./node_modules/3id-connect/src/threeIdConnect";
-import EthereumAuthProvider from "./node_modules/3id-connect/src/authProvider/ethereumAuthProvider";
-import Web3Modal from "web3modal";
+import ThreeIdConnect from "../../node_modules/3id-connect/src/threeIdConnect";
+import EthereumAuthProvider from "../../node_modules/3id-connect/src/authProvider/ethereumAuthProvider";
+import web3Modal from "../utils/provider.js";
 import Portis from "@portis/web3";
 import Authereum from "authereum";
 import Fortmatic from "fortmatic";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 export default {
   name: "App",
-  components: {
-    HelloWorld,
-  },
-
   methods: {
     async authenticate() {
       const THREEID_CONNECT_URL = "https://3idconnect.org/index.html";
@@ -66,6 +62,7 @@ export default {
       const API_URL = "http://localhost:7007";
       const threeIdConnect = new ThreeIdConnect(THREEID_CONNECT_URL);
       const ceramic = new CeramicClient(DEFAULT_API_URL);
+      //auth
       const ethProvider = await web3Modal.connect();
       const addresses = await ethProvider.request({ method: "eth_accounts" });
       console.log("Got the ethaddress");
@@ -99,73 +96,43 @@ export default {
       await idx.authenticate(ethereum);
       if (idx.authenticated) {
         console.log("authenticated IDX!!");
+        //redirect upon this
       }
-      const test = async () => {
-        let doc = await idx.set("profile", {
-          name: "Aditya",
-          emoji: "",
-          image: "",
-          gender: "Male",
-          birthDate: "2001-05-09",
-          background: "",
-          description: "",
-          affiliations: [""],
-          homeLocation: "",
-          nationalities: ["IN", "CA"],
-          residenceCountry: "IN",
-        });
-        console.log("CID: " + doc);
-        const sum = await ceramic.loadDocument(doc);
-        console.dir(sum);
-        console.log(sum.head);
-      };
-      const gett = async () => {
-        let profile = await idx.get("profile", idx.id);
-        console.log("My Profile : ");
-        console.dir(profile);
-      };
-    },
-    async verifysign() {
-      let publicKeys = await ceramic.context.resolver.resolve("did");
-      let keys = await ceramic.loadDocument(
-        "ceramic://" + idx.id.split(":")[2]
-      );
+
+      // let doc = await idx.set("profile", {
+      //   name: "Aditya",
+      //   emoji: "",
+      //   image: "",
+      //   gender: "Male",
+      //   birthDate: "2001-05-09",
+      //   background: "",
+      //   description: "",
+      //   affiliations: [""],
+      //   homeLocation: "",
+      //   nationalities: ["IN", "CA"],
+      //   residenceCountry: "IN",
+      // });
+      // console.log("CID: " + doc);
+      // const sum = await ceramic.loadDocument(doc);
+      // console.dir(sum);
+      // console.log(sum.head);
+
+      //   const gett = async () => {
+      //     let profile = await idx.get("profile", idx.id);
+      //     console.log("My Profile : ");
+      //     console.dir(profile);
+      //   };
+      // },
+      // async verifysign() {
+      //   let publicKeys = await ceramic.context.resolver.resolve("did");
+      //   let keys = await ceramic.loadDocument(
+      //     "ceramic://" + idx.id.split(":")[2]
+      //   );
+      // },
     },
   },
   data: () => {
-    return {
-      providerOptions: {
-        portis: {
-          package: Portis,
-          options: {
-            id: "8f5cf962-ad62-4861-ab0c-7b234b6e6cff",
-          },
-        },
-        walletconnect: {
-          package: WalletConnectProvider,
-          options: {
-            infuraId: "e87f83fb85bf4aa09bdf6605ebe144b7",
-          },
-        },
-        fortmatic: {
-          package: Fortmatic,
-          options: {
-            key: "pk_live_EC842EEAC7F08995",
-          },
-        },
-        authereum: {
-          package: Authereum,
-          options: {},
-        },
-      },
-      web3Modal: [
-        new Web3Modal({
-          network: "mainnet",
-          cacheProvider: true,
-          providerOptions,
-        }),
-      ],
-    };
+    return {};
   },
 };
 </script>

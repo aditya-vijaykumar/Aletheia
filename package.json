@@ -9,8 +9,12 @@
   },
   "dependencies": {
     "3id-connect": "0.1.0",
+    "@ceramicnetwork/ceramic-http-client": "^0.6.5",
+    "@ceramicstudio/idx-tools": "^0.2.2",
+    "@ceramicstudio/idx-web": "^0.1.0",
     "bootstrap-vue": "^2.0.4",
     "dids": "^0.7.0",
+    "ethereum-ens": "^0.8.0",
     "flatpickr": "^4.5.1",
     "nouislider": "^11.1.0",
     "register-service-worker": "^1.5.2",
