@@ -1,8 +1,8 @@
 <template>
   <header class="header-global">
     <base-nav class="navbar-main" transparent type="" effect="light" expand>
-      <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-        <img src="img/brand/white.png" alt="logo" />
+      <router-link slot="brand" class="navbar-brand mr-lg-5" to="/al">
+        <img src="img/brand/aletheia2.png" alt="logo" />
       </router-link>
 
       <div class="row" slot="content-header" slot-scope="{ closeMenu }">
