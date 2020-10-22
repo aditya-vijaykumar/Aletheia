@@ -1,6 +1,5 @@
 <template>
-  <footer class="footer ">
-    
+  <footer class="footer">
     <div class="container">
       <div class="row row-grid align-items-center my-md">
         <div class="col-lg-6">
@@ -23,7 +22,7 @@
           >
             <i class="fa fa-twitter"></i>
           </a>
-          
+
           <a
             target="_blank"
             rel="noopener"
@@ -41,23 +40,21 @@
         <div class="col-md-6">
           <div class="copyright">
             &copy; {{ year }}
-            <a
-              href="https://www.creative-tim.com"
-              target="_blank"
-              rel="noopener"
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener"
               >Aditya Vijaykumar</a
             >
-            &
-            <a href="https://www.binarcode.com" target="_blank" rel="noopener"
-              >Anshul Rai</a>.
-            <small>Template by Creative Tim.</small> 
+            &amp;
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+              >Anshul Rai</a
+            >.
+            <small>Template by Creative Tim.</small>
           </div>
         </div>
         <div class="col-md-6">
           <ul class="nav nav-footer justify-content-end">
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com"
+                href="https://github.com/aditya-vijaykumar/Aletheia"
                 class="nav-link"
                 target="_blank"
                 rel="noopener"
@@ -66,14 +63,13 @@
             </li>
             <li class="nav-item">
               <a
-                href="https://www.creative-tim.com/presentation"
+                href="https://ethonline.io"
                 class="nav-link"
                 target="_blank"
                 rel="noopener"
                 >ETHOnline</a
               >
             </li>
-            
           </ul>
         </div>
       </div>
