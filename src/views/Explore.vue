@@ -70,7 +70,7 @@ export default {
         definitions: appDefinitions,
         connect: threeIdConnect,
       });
-      const MyProfile = await bobClient.get("profile", idx.id);
+      const MyProfile = await bobClient.get("profile", this.did);
 
       console.log("My Profile: ");
       console.dir(MyProfile);
@@ -78,5 +78,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>
