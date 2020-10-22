@@ -8,6 +8,10 @@
     v-show="auth"
   >
     <template>
+      <div class="text-center mb-4">
+        <h4>PART 2</h4>
+      </div>
+
       <div class="text-center mb-5">
         <base-button type="primary" class="my-4" @click="getem"
           >Get Deets</base-button
@@ -18,6 +22,11 @@
 </template>
 <script>
 export default {
-  name: "card2",
+  name: "card3",
+  methods: {
+    getem() {
+      this.$emit("task");
+    },
+  },
 };
 </script>

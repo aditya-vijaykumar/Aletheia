@@ -12,9 +12,13 @@
     </div>
     <div class="container pt-lg-md">
       <div class="row justify-content-center">
-        <div class="col-lg-5">
+        <div class="col-lg-7">
           <!-- <component :is="dynamicComponent"></component> -->
-          <component v-bind:is="component" @task="authenticate" />
+          <component
+            v-bind:is="component"
+            @task="authenticate"
+            @part3="getem"
+          />
         </div>
       </div>
     </div>

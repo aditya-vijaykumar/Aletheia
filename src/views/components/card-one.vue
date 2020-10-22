@@ -19,11 +19,6 @@
           >Get Started</base-button
         >
       </div>
-      <div class="text-center mb-5">
-        <base-button type="primary" class="my-4" @click="getem"
-          >Get Deets</base-button
-        >
-      </div>
     </template>
   </card>
 </template>

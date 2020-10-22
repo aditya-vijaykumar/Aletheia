@@ -43,27 +43,9 @@
                   <base-button type="info" size="sm" class="mr-4"
                     >Edit</base-button
                   >
-                  <!-- <base-button type="default" size="sm" class="float-right"
-                    >Message</base-button
-                  > -->
                 </div>
               </div>
-              <div class="col-lg-4 order-lg-1">
-                <!-- <div class="card-profile-stats d-flex justify-content-center">
-                  <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div>
-                </div> -->
-              </div>
+              <div class="col-lg-4 order-lg-1"></div>
             </div>
             <div class="text-center mt-5">
               <h3>
