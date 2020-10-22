@@ -1,9 +1,10 @@
 <template>
   <v-btn @click="authenticate">Click here</v-btn>
+  <v-btn @click="test">newDoc</v-btn>
+  <v-btn @click="gett">getDoc</v-btn>
 </template>
 
 <script>
-import web3Modal from './providers.js'
 import { DID } from 'dids'
 import CeramicClient from '@ceramicnetwork/ceramic-http-client'
 import { IDXWeb } from '@ceramicstudio/idx-web'
@@ -11,6 +12,11 @@ import { publishIDXConfig } from '@ceramicstudio/idx-tools'
 //import { definitions, schemas } from '@ceramicstudio/idx-constants'
 import ThreeIdConnect  from './node_modules/3id-connect/src/threeIdConnect'
 import EthereumAuthProvider from './node_modules/3id-connect/src/authProvider/ethereumAuthProvider'
+import Web3Modal from "web3modal"
+import Portis from "@portis/web3";
+import Authereum from "authereum";
+import Fortmatic from "fortmatic";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 export default {
   name: 'App',
   components: {
@@ -84,9 +90,6 @@ const ceramic = new CeramicClient(DEFAULT_API_URL)
 
   }
 
-  newdoc.addEventListener('click', test())
-  getdoc.addEventListener('click', gett())
-
 
 },
 
@@ -96,6 +99,36 @@ verifysign = async () => {
   let publicKeys = await ceramic.context.resolver.resolve('did')
   let keys = await ceramic.loadDocument('ceramic://' + idx.id.split(':')[2])
 },
+ providerOptions = {
+  portis: {
+    package: Portis,
+    options: {
+      id: "8f5cf962-ad62-4861-ab0c-7b234b6e6cff"
+    }
+  },
+  walletconnect: {
+    package: WalletConnectProvider,
+    options: {
+      infuraId: "e87f83fb85bf4aa09bdf6605ebe144b7"
+    }
+  },
+  fortmatic: {
+    package: Fortmatic,
+    options: {
+      key: "pk_live_EC842EEAC7F08995"
+    }
+  },
+  authereum: {
+    package: Authereum,
+    options: {}
+  }
+},
+
+ web3Modal = new Web3Modal({
+  network: "mainnet",
+  cacheProvider: true,
+  providerOptions
+})
 }
 </script>
 
