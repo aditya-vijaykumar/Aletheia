@@ -1,28 +1,36 @@
 <template>
   <div class="row justify-content-center">
-        <div class="col-lg-5">
-          <card
-            type="secondary"
-            shadow
-            header-classes="bg-white pb-5"
-            body-classes="px-lg-5 py-lg-5"
-            class="border-0"
-          >
-            <template>
-              <div class="text-center mb-4">
-                <h4>
-                  To get started, please give access through metamask followed
-                  by 3id.
-                </h4>
-              </div>
+    <div class="col-lg-5">
+      <card
+        type="secondary"
+        shadow
+        header-classes="bg-white pb-5"
+        body-classes="px-lg-5 py-lg-5"
+        class="border-0"
+      >
+        <template>
+          <div class="text-center mb-4">
+            <h4>
+              To get started, please give access through metamask followed by
+              3id.
+            </h4>
+          </div>
 
-              <div class="text-center mb-5">
-                <base-button type="primary" class="my-4" @click="authenticate; toAccount"
-                  >Get Started</base-button
-                >
-              </div>
-            </template>
-          </card>
+          <div class="text-center mb-5">
+            <base-button
+              type="primary"
+              class="my-4"
+              @click="
+                authenticate;
+                toAccount;
+              "
+              >Get Started</base-button
+            >
+          </div>
+        </template>
+      </card>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -38,8 +46,8 @@ import {
 } from "../../node_modules/3id-connect/src/index";
 import web3Modal from "../utils/provider.js";
 export default {
-    methods: {
-        async authenticate() {
+  methods: {
+    async authenticate() {
       const THREEID_CONNECT_URL = "https://3idconnect.org/index.html";
       const DEFAULT_API_URL = "https://ceramic.3boxlabs.com";
       const API_URL = "http://localhost:7007";
@@ -82,14 +90,12 @@ export default {
         //redirect upon this
       }
     },
-        toMain() {
-        this.$emit('toggle')
+    toMain() {
+      this.$emit("toggle");
     },
-    },
-    
-}
+  },
+};
 </script>
 
 <style>
-
 </style>

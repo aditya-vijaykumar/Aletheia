@@ -12,19 +12,15 @@
     </div>
     <div class="container pt-lg-md" v-if="account">
       <Card @toggle="account = !account" />
-        </div>
-        <div v-else>
-          <Account @toggle="account = !account" />
-
-        </div>
-      </div>
+    </div>
+    <div v-else>
+      <Account @toggle="account = !account" />
     </div>
   </section>
 </template>
 <script>
 import Account from "./Account";
 import Card from "./card";
-
 
 export default {
   name: "App",
@@ -34,11 +30,11 @@ export default {
   },
   methods: {
     toAccount() {
-      this.cards = false
-    }
+      this.cards = false;
+    },
   },
   data: () => {
-    account : false;
+    account: false;
     cards: true;
   },
 };
