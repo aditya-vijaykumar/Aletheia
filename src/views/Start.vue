@@ -58,11 +58,12 @@ export default {
   components: {
     HelloWorld,
   },
-  // const THREEID_CONNECT_URL = 'https://3idconnect.org/index.html'
-  // const DEFAULT_API_URL = 'https://ceramic.3boxlabs.com'
-  // const API_URL = "http://localhost:7007"
+
   methods: {
     async authenticate() {
+      const THREEID_CONNECT_URL = "https://3idconnect.org/index.html";
+      const DEFAULT_API_URL = "https://ceramic.3boxlabs.com";
+      const API_URL = "http://localhost:7007";
       const threeIdConnect = new ThreeIdConnect(THREEID_CONNECT_URL);
       const ceramic = new CeramicClient(DEFAULT_API_URL);
       const ethProvider = await web3Modal.connect();
