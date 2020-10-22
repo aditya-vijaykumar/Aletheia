@@ -52,6 +52,8 @@
 import { IDXWeb } from "@ceramicstudio/idx-web";
 import CeramicClient from "@ceramicnetwork/ceramic-http-client";
 import { ThreeIdConnect } from "../../node_modules/3id-connect/src/index";
+import { publishIDXConfig } from "@ceramicstudio/idx-tools";
+
 export default {
   name: "explore",
   data: () => {
