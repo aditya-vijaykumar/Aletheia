@@ -13,36 +13,14 @@
     <div class="container pt-lg-md">
       <div class="row justify-content-center">
         <div class="col-lg-9">
-          <card
-            type="secondary"
-            shadow
-            header-classes="bg-white pb-5"
-            body-classes="px-lg-5 py-lg-5"
-            class="border-0"
-          >
-            <div class="text-center mb-3">
-              <h3>Enter did to resolve for profile</h3>
-            </div>
-
-            <template>
-              <form role="form">
-                <base-input
-                  v-model="did"
-                  alternative
-                  class="mb-3"
-                  placeholder="did"
-                  addon-left-icon="ni ni-hat-3"
-                >
-                </base-input>
-
-                <div class="text-center">
-                  <base-button type="primary" class="my-4" @click="fetch"
-                    >Resolve</base-button
-                  >
-                </div>
-              </form>
-            </template>
-          </card>
+          <component
+            v-bind:is="component"
+            @fetch="fetch"
+            @back="back"
+            :profile="profile"
+            :did="did"
+            :disabled="disabled"
+          />
         </div>
       </div>
     </div>
@@ -50,35 +28,101 @@
 </template>
 <script>
 import { IDXWeb } from "@ceramicstudio/idx-web";
+import { DID } from "dids";
 import CeramicClient from "@ceramicnetwork/ceramic-http-client";
-import { ThreeIdConnect } from "../../node_modules/3id-connect/src/index";
+import {
+  ThreeIdConnect,
+  EthereumAuthProvider,
+} from "../../node_modules/3id-connect/src/index";
 import { publishIDXConfig } from "@ceramicstudio/idx-tools";
+import web3Modal from "../utils/provider.js";
+
+import exploreDid from "./components/explore-did";
+import exploreFail from "./components/explore-fail";
+import exploreProfile from "./components/explore-profile";
 
 export default {
   name: "explore",
   data: () => {
-    return {};
+    return {
+      component: "exploreDid",
+      profile: {},
+      did: "",
+      blah:
+        "did:3:bagcqcerad3qnhxyusdy3u2ilm5wrxxxlb6d4x3wf3xr23u5p4i4nni4qwfma",
+      disabled: false,
+    };
+  },
+  components: {
+    exploreDid,
+    exploreFail,
+    exploreProfile,
   },
   methods: {
-    async fetch() {
+    async fetch(event, value) {
+      console.log("fetch function in parent called");
+      NProgress.start();
+      this.disabled = true;
+
+      // Re-enable after 5 seconds
+      this.timeout = setTimeout(() => {
+        this.disabled = false;
+      }, 20000);
+
       const THREEID_CONNECT_URL = "https://3idconnect.org/index.html";
       const DEFAULT_API_URL = "https://ceramic.3boxlabs.com";
       const API_URL = "http://localhost:7007";
       const threeIdConnect = new ThreeIdConnect(THREEID_CONNECT_URL);
       const ceramic = new CeramicClient(DEFAULT_API_URL);
+
+      const ethProvider = await web3Modal.connect();
+      const addresses = await ethProvider.request({ method: "eth_accounts" });
+      console.log("Got the ethaddress");
+      this.ethaddress = addresses[0];
+      const authProvider = new EthereumAuthProvider(ethProvider, addresses[0]);
+      await threeIdConnect.connect(authProvider);
+      console.log("3id connect func executed");
+      const didProvider = await threeIdConnect.getDidProvider();
+      console.log("didProvider accessed");
+      //console.dir( didProvider)
+      const ClientDid = new DID({ provider: didProvider });
+      //console.dir(did)
+      await ClientDid.authenticate();
+      console.log("This is the did " + ClientDid.id);
+      const jws = await ClientDid.createJWS({ hello: "world" });
+
       const { definitions } = await publishIDXConfig(ceramic);
       const appDefinitions = {
         profile: definitions.basicProfile,
       };
-      const bobClient = new IDXWeb({
+      await ceramic.setDIDProvider(didProvider);
+      console.log("Ceramic DID Provider set");
+      const Client = new IDXWeb({
         ceramic,
         definitions: appDefinitions,
-        connect: threeIdConnect,
       });
-      const MyProfile = await bobClient.get("profile", this.did);
+      await Client.get("profile", (did = value))
+        .then((MyProfile) => {
+          if (MyProfile) {
+            this.profile = MyProfile;
+            this.component = "exploreProfile";
+            NProgress.done();
+          } else {
+            this.component = "exploreFail";
+            NProgress.done();
+          }
+        })
+        .catch((err) => {
+          this.component = "exploreFail";
+          NProgress.done();
+        });
 
       console.log("My Profile: ");
       console.dir(MyProfile);
+    },
+    back() {
+      this.component = "exploreDid";
+      NProgress.done();
     },
   },
 };
