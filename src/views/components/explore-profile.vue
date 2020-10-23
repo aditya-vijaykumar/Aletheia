@@ -11,7 +11,7 @@
       <div class="card-profile-image text-center">
         <a href="#">
           <img
-            v-lazy="'img/theme/team-4-800x800.jpg'"
+            v-lazy="profile.image"
             class="rounded-circle"
             style="height: 200px"
           />

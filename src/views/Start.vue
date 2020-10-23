@@ -73,6 +73,8 @@ export default {
   },
   methods: {
     async authenticate() {
+      NProgress.start();
+
       const THREEID_CONNECT_URL = "https://3idconnect.org/index.html";
       const DEFAULT_API_URL = "https://ceramic.3boxlabs.com";
       const API_URL = "http://localhost:7007";
@@ -125,6 +127,8 @@ export default {
         this.idx = idx;
         this.ceramic = ceramic;
         this.did = did;
+        NProgress.done();
+
         this.component = "card3";
       }
     },

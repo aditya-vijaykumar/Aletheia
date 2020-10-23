@@ -20,6 +20,7 @@
             :profile="profile"
             :did="did"
             :disabled="disabled"
+            :method="fetch"
           />
         </div>
       </div>
