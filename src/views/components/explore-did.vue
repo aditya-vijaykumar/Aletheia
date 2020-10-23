@@ -42,10 +42,11 @@ export default {
       did: "",
     };
   },
-  props: ["disabled"],
+  props: { method: { type: Function } },
   methods: {
     fetch() {
-      this.$emit("fetch", this.did);
+      console.log(this.did);
+      this.method(this.did);
     },
   },
 };

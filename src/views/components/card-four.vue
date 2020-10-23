@@ -24,7 +24,7 @@
               placeholder="Name"
               addon-left-icon="ni ni-hat-3"
               maxlength="150"
-              v-model="name"
+              v-model="profile.name"
             >
             </base-input>
             <base-input
@@ -33,7 +33,7 @@
               placeholder="Emoji"
               addon-left-icon="ni ni-email-83"
               maxlength="2"
-              v-model="emoji"
+              v-model="profile.emoji"
             >
             </base-input>
             <base-input
@@ -42,6 +42,7 @@
               placeholder="Url"
               addon-left-icon="ni ni-email-83"
               maxlength="240"
+              v-model="profile.url"
             >
             </base-input
             ><base-input
@@ -50,6 +51,7 @@
               placeholder="Description"
               addon-left-icon="ni ni-email-83"
               maxlength="420"
+              v-model="profile.description"
             >
             </base-input
             ><base-input
@@ -58,7 +60,7 @@
               placeholder="Gender"
               addon-left-icon="ni ni-email-83"
               maxlength="42"
-              v-model="gender"
+              v-model="profile.gender"
             >
             </base-input>
           </div>
@@ -70,6 +72,7 @@
               type="date"
               addon-left-icon="ni ni-email-83"
               maxlength="42"
+              v-model="profile.birthDate"
             >
             </base-input>
             <base-input
@@ -78,6 +81,7 @@
               placeholder="Affiliations"
               addon-left-icon="ni ni-email-83"
               maxlength="140"
+              v-model="profile.affiliations[0]"
             >
             </base-input>
             <base-input
@@ -86,6 +90,7 @@
               placeholder="Home Location"
               addon-left-icon="ni ni-email-83"
               maxlength="140"
+              v-model="profile.homeLocation"
             >
             </base-input>
             <base-input
@@ -94,7 +99,7 @@
               placeholder="Nationalities"
               addon-left-icon="ni ni-email-83"
               maxlength="140"
-              :value="profile.nationalities[0]"
+              v-model="profile.nationalities[0]"
             >
             </base-input>
             <div class="">
@@ -107,16 +112,10 @@
               placeholder="Image"
               addon-left-icon="ni ni-email-83"
               type="file"
+              @change="onFileChanged"
             >
             </base-input>
           </div>
-        </div>
-
-        <div class="text-muted font-italic">
-          <small
-            >password strength:
-            <span class="text-success font-weight-700">strong</span>
-          </small>
         </div>
 
         <div class="text-center">
@@ -129,24 +128,34 @@
   </card>
 </template>
 <script>
+import ipfsClient from "ipfs-http-client";
 export default {
   name: "card4",
-  props: ["profile"],
+  props: {
+    profile: {
+      required: true,
+    },
+    method: { type: Function },
+  },
   data: () => {
-    return {
-      name: this.profile.name,
-    };
+    return { selectedFile: null };
   },
   methods: {
-    update() {
-      let profile2 = {};
-      profile2.name = name;
-      profile2.emoji = emoji;
-      profile2.gender = gender;
+    async update() {
+      let infura = "https://ipfs.infura.io:5001";
+      const { globSource } = ipfsClient;
 
-      this.$emit("update", this.profile2);
+      const ipfs = ipfsClient({ url: infura });
+      const file = await ipfs.add(this.selectedFile);
+      console.log(file);
+      this.profile.image = "https://ipfs.io/ipfs/" + file.path;
+      console.log(this.profile);
+
+      this.method(this.profile);
     },
-    complete() {},
+    onFileChanged(event) {
+      this.selectedFile = event.target.files[0];
+    },
   },
 };
 </script>

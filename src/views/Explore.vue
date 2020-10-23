@@ -101,7 +101,8 @@ export default {
         ceramic,
         definitions: appDefinitions,
       });
-      await Client.get("profile", (did = value))
+      console.log("Value:" + value);
+      await Client.get("profile", value)
         .then((MyProfile) => {
           if (MyProfile) {
             this.profile = MyProfile;

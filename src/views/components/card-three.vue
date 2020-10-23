@@ -11,7 +11,7 @@
       <div class="card-profile-image text-center">
         <a href="#">
           <img
-            v-lazy="'img/theme/team-4-800x800.jpg'"
+            v-lazy="profile.image"
             class="rounded-circle"
             style="height: 200px"
           />
@@ -70,10 +70,18 @@
 <script>
 export default {
   name: "card3",
-  props: ["profile", "did", "ethaddress"],
+  props: {
+    profile: {
+      required: true,
+    },
+    did: { type: String },
+    ethaddress: {
+      type: String,
+    },
+  },
   methods: {
     card3() {
-      this.$emit("edit");
+      this.$emit("something");
     },
   },
 };

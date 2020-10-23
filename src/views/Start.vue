@@ -17,11 +17,12 @@
           <component
             v-bind:is="component"
             @task="authenticate"
-            @edit="edit"
+            @something="edit"
             @update="update"
             :profile="profile"
             :did="id"
             :ethadress="ethaddress"
+            :method="update"
           />
         </div>
       </div>
@@ -121,21 +122,23 @@ export default {
           console.log("My Profile");
           console.dir(MyProfile);
         }
+        this.idx = idx;
+        this.ceramic = ceramic;
+        this.did = did;
         this.component = "card3";
       }
-      this.idx = idx;
-      this.ceramic = ceramic;
-      this.did = did;
     },
     async edit() {
       if (this.auth) {
         this.component = "card4";
       }
     },
-    async update(event, profile2) {
+    async update(profile2) {
       if (this.idx.authenticated) {
+        console.log("update");
         const doc = await this.idx.set("profile", profile2);
-        const MyProfile = await idx.get("profile", this.idx.id);
+        console.log(doc);
+        const MyProfile = await this.idx.get("profile", this.idx.id);
         this.profile = MyProfile;
         this.component = "card3";
       }
